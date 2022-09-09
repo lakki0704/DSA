@@ -29,35 +29,49 @@ void create(int A[], int n)
     }
 }
 
-int sum(struct Node *p)
+int find_max(struct Node *p)
 {
-    int sum_ele = 0;
+    int max_ele = -123489;
     while(p!=NULL)
     {
-        sum_ele=sum_ele+p->data;
+        if(p->data> max_ele)
+        {
+            max_ele= p->data;
+        }
         p=p->next;
-
     }
-    return sum_ele;
+    return max_ele;
 }
 
-int sum_recursive(struct Node *p)
+int find_max_recursive(struct Node *p)
 {
-    if(p==NULL)
+    int x=0;
+    if(p==0)
     {
         return 0;
     }
+    else
+        x = find_max_recursive(p->next);
+    if(x> p->data)
+    {
+        return x;
+
+    }
     else{
-        return sum_recursive(p->next)+ p->data;
+        return p->data;
+    }
+    {
+
     }
 }
+
+
 int main()
 {
     int A[]= {3, 5,7,10,15};
     create(A,5);
+cout<< "The max element in the list is : " << find_max(first);
 
-    cout<< "The sum of all elements  (iteratively) : " << sum(first) << endl;
-
-    cout<< "The sum of all elements  (recursively) : " << sum_recursive(first);
+cout<< endl<< "The max element in the list is (recursive) : " << find_max_recursive(first);
     return 0;
 }
